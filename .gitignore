@@ -131,3 +131,6 @@ dmypy.json
 # Docker
 Dockerfile
 docker-compose.yaml
+
+# Project
+plots/
