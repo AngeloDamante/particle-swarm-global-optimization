@@ -10,4 +10,3 @@ if __name__ == '__main__':
 
     # PSO(cost_function, num_dimension, )
     # population_generator()
-    # djdjd
