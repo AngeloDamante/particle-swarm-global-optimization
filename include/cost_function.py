@@ -2,7 +2,20 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def function():
+def sphere(x):
+    return np.sum(np.power(x, 2))
+# end
+
+
+def ackley(x):
+    d = len(x)
+    v1 = -20 * np.exp(-0.2 * np.sqrt((1 / d) * (np.sum(np.power(x, 2)))))
+    v2 = -np.exp((1 / d) * np.sum(np.cos(2 * np.pi * x))) + 20 + np.e
+    return (v1 + v2)
+# end
+
+
+def print_f():
     # sphere function
     domain = {"start": -100, "end": +100}
     nSample = 100
@@ -10,6 +23,7 @@ def function():
     x = np.linspace(domain["start"], domain["end"], num=nSample)
     y = np.linspace(domain["start"], domain["end"], num=nSample)
     xv, yv = np.meshgrid(x, y)
+
     z = np.power(xv, 2) + np.power(yv, 2)
 
     fig = plt.figure('sphere')
@@ -25,3 +39,5 @@ def function():
     bx.scatter(x, y, marker='o', c='r')
     plt.contour(xv, yv, z, levels=10)
     fig.savefig('/plots/cont.pdf', format='pdf')
+
+# end

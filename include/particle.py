@@ -1,23 +1,27 @@
 import numpy as np
+from random import random
+from uniform import uniform
 
 
 class Particle(object):
     """docstring for Particle."""
 
-    def __init__(self, dimension, num_iterations):
+    def __init__(self, bounds):
         super(Particle, self).__init__()
-        self.position = np.empty((num_iterations, dimension))
-        self.velocity = np.empty((num_iterations, dimension))
-        self.best_position = np.empty((num_iterations, dimension))
+        dimension = len(bounds)
 
-        self.fitness = None
-        self.best_fitness = None
+        self.position = np.zeros(())
+        self.velocity = np.empty((dimension, 1))
+
+    # end
 
     def update_position():
         pass
+    # end
 
     def update_velocity():
         pass
 
     def evaluate():
         pass
+    # end
