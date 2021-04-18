@@ -1,6 +1,6 @@
 import numpy as np
 from random import random
-from uniform import uniform
+# from uniform import uniform
 
 
 class Particle(object):
@@ -10,8 +10,9 @@ class Particle(object):
         super(Particle, self).__init__()
         dimension = len(bounds)
 
-        self.position = np.zeros(())
-        self.velocity = np.empty((dimension, 1))
+        self.position = np.zeros((dimension, 1))
+        self.position = np.random.uniform(bounds)
+        self.velocity = np.zeros((dimension, 1))
 
     # end
 
