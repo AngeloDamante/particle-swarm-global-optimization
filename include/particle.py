@@ -10,8 +10,7 @@ class Particle(object):
         super(Particle, self).__init__()
         dimension = len(bounds)
 
-        self.position = np.zeros((dimension, 1))
-        self.position = np.random.uniform(bounds)
+        self.position = np.random.uniform(bounds[0], bounds[1], (dimension, 1))
         self.velocity = np.zeros((dimension, 1))
 
     # end
