@@ -12,8 +12,8 @@ class Particle(object):
         lower = bounds[:, 0]
         upper = bounds[:, 1]
 
-        self.position = np.random.uniform(lower, upper).reshape(n_dim, 1)
         # self.position = np.array([5., 5.]).reshape(n_dim, 1)
+        self.position = np.random.uniform(lower, upper).reshape(n_dim, 1)
         self.velocity = np.random.uniform(size=(n_dim, 1))
 
         self.local_best = self.position.copy()
