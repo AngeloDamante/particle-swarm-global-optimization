@@ -10,37 +10,53 @@ class Swarm(object):
         super(Swarm, self).__init__()
 
         self.num_particles = num_particles
-        self.particles = []
-        self.local_best = []
-        self.global_best = None
+        self.dim = len(bounds)
 
+        self.particles = []
         for i in range(0, num_particles):
             self.particles.append(Particle(bounds))
         # end
 
-        self.best_local = self.particles
+        self.global_best = self.particles[0].local_best
+
     # end
 
     def get_particles_position(self):
+        actual_position = np.zeros((self.num_particles, self.dim))
         for i in range(0, self.num_particles):
-            print(self.particles[i].position)
+            actual_position[i] = np.transpose(self.particles[i].position)
         # end
+        return actual_position
     # end
 
     def get_particles_velocity(self):
+        actual_velocity = np.zeros((self.num_particles, self.dim))
         for i in range(0, self.num_particles):
-            print(self.particles[i].velocity)
+            actual_velocity[i] = np.transpose(self.particles[i].velocity)
+        # end
+        return actual_velocity
+    # end
+
+    def get_local_best(self):
+        local_best = np.zeros((self.num_particles, self.dim))
+        for i in range(0, self.num_particles):
+            local_best[i] = np.transpose(self.particles[i].local_best)
+        # end
+        return local_best
+    # end
+
+    def compute_local_best(self, cost_function):
+        for i in range(0, self.num_particles):
+            self.particles[i].evaluate(cost_function)
         # end
     # end
 
-    def compute_global_(cost_function):
-        g = cost_function(self.particles[0].local_best)
-        for i in range(1, num_particles):
-            value = cost_function(self.particles[i].local_best)
-            if g > value:
-                g = value
+    def compute_global_best(self, cost_function):
+        g = cost_function(self.global_best)
+        for i in range(0, self.num_particles):
+            if g > cost_function(self.particles[i].local_best):
+                self.global_best = self.particles[i].local_best
         # end
-        self.global_best = g
     # end
 
     def update(self, inertia, cognitive, social):
