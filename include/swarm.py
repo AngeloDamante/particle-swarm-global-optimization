@@ -37,24 +37,22 @@ class Swarm(object):
         return actual_velocity
     # end
 
-    def get_state(self, iter):
-        positions = self.get_particles_position()
-        velocities = self.get_particles_velocity()
-        local_best = self.get_local_best()
-        global_best = self.global_best
-
-        print(f"iter: {iter} \n positions: {positions},  \
-              \n velocities: {velocities} \
-              \n local_best: {local_best}, \
-              \n global_best: {global_best}")
-    # end
-
     def get_local_best(self):
         local_best = np.zeros((self.num_particles, self.dim))
         for i in range(0, self.num_particles):
             local_best[i] = np.transpose(self.particles[i].local_best)
         # end
         return local_best
+    # end
+
+    def get_state(self, iter):
+        positions = self.get_particles_position()
+        velocities = self.get_particles_velocity()
+        local_best = self.get_local_best()
+        global_best = self.global_best
+
+        state = [positions, velocities, local_best, global_best]
+        return state
     # end
 
     def compute_local_best(self, cost_function):
@@ -67,7 +65,8 @@ class Swarm(object):
         g = cost_function(self.global_best)
         for i in range(0, self.num_particles):
             if g > cost_function(self.particles[i].local_best):
-                self.global_best = self.particles[i].local_best
+                self.global_best = (self.particles[i].local_best).copy()
+                g = cost_function(self.particles[i].local_best)
         # end
     # end
 

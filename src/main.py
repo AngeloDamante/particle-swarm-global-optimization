@@ -4,8 +4,8 @@ from swarm import Swarm
 
 
 def standard_pso(num_iterations, num_particles, bounds, fitness_func):
-    my_swarm = Swarm(num_particles, bounds)
-    my_swarm.compute_global_best(fitness_func)
+    my_swarm = Swarm(num_particles, bounds)  # initial population
+    my_swarm.compute_global_best(fitness_func)  # set global best for swarm
     for k in range(0, num_iterations):
 
         # coefficients policy
@@ -49,8 +49,8 @@ if __name__ == '__main__':
     num_iterations = 50
     num_particles = 30
     bounds = np.array([[-5, +5], [-5, +5]])
-    fitness_func = sphere
+    fitness_func = ackley
 
-    # standard_pso(num_iterations, num_particles, bounds, fitness_func)
-    memetic_pso(num_iterations, num_particles, bounds, fitness_func)
+    standard_pso(num_iterations, num_particles, bounds, fitness_func)
+    # memetic_pso(num_iterations, num_particles, bounds, fitness_func)
 # end
