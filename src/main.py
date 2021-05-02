@@ -1,6 +1,7 @@
 import numpy as np
 from cost_function import sphere, ackley
 from swarm import Swarm
+from coordinate_descent import *
 
 
 def standard_pso(num_iterations, num_particles, bounds, fitness_func):
@@ -51,6 +52,9 @@ if __name__ == '__main__':
     bounds = np.array([[-5, +5], [-5, +5]])
     fitness_func = ackley
 
-    standard_pso(num_iterations, num_particles, bounds, fitness_func)
+    # standard_pso(num_iterations, num_particles, bounds, fitness_func)
     # memetic_pso(num_iterations, num_particles, bounds, fitness_func)
+
+    x = np.array([5., 3.]).reshape((2, 1))
+    coordinate_descent(x, sphere)
 # end
