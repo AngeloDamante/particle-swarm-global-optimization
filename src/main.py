@@ -55,6 +55,4 @@ if __name__ == '__main__':
     # standard_pso(num_iterations, num_particles, bounds, fitness_func)
     # memetic_pso(num_iterations, num_particles, bounds, fitness_func)
 
-    x = np.array([5., 3.]).reshape((2, 1))
-    coordinate_descent(x, sphere)
 # end
