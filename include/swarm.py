@@ -61,6 +61,14 @@ class Swarm(object):
         # end
     # end
 
+    def found_local_best(self, local_search_method, cost_function, initial_step=1):
+        for i in range(0, self.num_particles):
+            x = self.particles[i].position
+            self.particles[i].local_best = local_search_method(
+                x, cost_function, initial_step)
+        # end
+    # end
+
     def compute_global_best(self, cost_function):
         g = cost_function(self.global_best)
         for i in range(0, self.num_particles):
