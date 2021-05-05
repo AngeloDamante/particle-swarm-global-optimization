@@ -21,10 +21,24 @@ class Swarm(object):
 
     # end
 
+    def get_global_best():
+        p_star = self.global_best.copy()
+        return p_star
+    # end
+
+    def find_global_best(self, cost_function):
+        g = cost_function(self.global_best)
+        for i in range(0, self.num_particles):
+            if g > cost_function(self.particles[i].local_best):
+                self.global_best = (self.particles[i].local_best).copy()
+                g = cost_function(self.particles[i].local_best)
+        # end
+    # end
+
     def get_particles_position(self):
         actual_position = np.zeros((self.num_particles, self.dim))
         for i in range(0, self.num_particles):
-            actual_position[i] = np.transpose(self.particles[i].position)
+            actual_position[i] = np.transpose(self.particles[i].get_position())
         # end
         return actual_position
     # end
@@ -32,50 +46,27 @@ class Swarm(object):
     def get_particles_velocity(self):
         actual_velocity = np.zeros((self.num_particles, self.dim))
         for i in range(0, self.num_particles):
-            actual_velocity[i] = np.transpose(self.particles[i].velocity)
+            actual_velocity[i] = np.transpose(self.particles[i].get_velocity())
         # end
         return actual_velocity
     # end
 
-    def get_local_best(self):
+    def get_particles_local_best(self):
         local_best = np.zeros((self.num_particles, self.dim))
         for i in range(0, self.num_particles):
-            local_best[i] = np.transpose(self.particles[i].local_best)
+            local_best[i] = np.transpose(self.particles[i].get_local_best())
         # end
         return local_best
     # end
 
-    def get_state(self, iter):
+    def get_state(self):
         positions = self.get_particles_position()
         velocities = self.get_particles_velocity()
-        local_best = self.get_local_best()
+        local_best = self.get_particles_local_best()
         global_best = self.global_best
 
         state = [positions, velocities, local_best, global_best]
         return state
-    # end
-
-    def compute_local_best(self, cost_function):
-        for i in range(0, self.num_particles):
-            self.particles[i].evaluate(cost_function)
-        # end
-    # end
-
-    def found_local_best(self, local_search_method, cost_function, initial_step=1):
-        for i in range(0, self.num_particles):
-            x = self.particles[i].position
-            self.particles[i].local_best = local_search_method(
-                x, cost_function, initial_step)
-        # end
-    # end
-
-    def compute_global_best(self, cost_function):
-        g = cost_function(self.global_best)
-        for i in range(0, self.num_particles):
-            if g > cost_function(self.particles[i].local_best):
-                self.global_best = (self.particles[i].local_best).copy()
-                g = cost_function(self.particles[i].local_best)
-        # end
     # end
 
     def move(self, inertia, cognitive, social):
@@ -86,5 +77,20 @@ class Swarm(object):
             self.particles[i].update_position()
         # end
     # end
+
+    def compute_local_best(self, cost_function):
+        for i in range(0, self.num_particles):
+            self.particles[i].evaluate_local_best(cost_function)
+        # end
+    # end
+
+    def find_local_best(self, local_search_method, cost_function, initial_step=1):
+        for i in range(0, self.num_particles):
+            x = self.particles[i].position
+            self.particles[i].local_best = local_search_method(
+                x, cost_function, initial_step)
+        # end
+    # end
+
 
 # end

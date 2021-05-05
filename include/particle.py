@@ -12,12 +12,28 @@ class Particle(object):
         lower = bounds[:, 0]
         upper = bounds[:, 1]
 
-        # self.position = np.array([5., 5.]).reshape(n_dim, 1)
         self.position = np.random.uniform(lower, upper).reshape(n_dim, 1)
-
         self.velocity = np.random.uniform(size=(n_dim, 1))
-
         self.local_best = self.position.copy()
+    # end
+
+    def get_position(self):
+        position = self.position.copy()
+        return position
+    # end
+
+    def get_velocity(self):
+        velocity = self.velocity.copy()
+        return velocity
+    # end
+
+    def get_local_best(self):
+        p = self.local_best.copy()
+        return p
+    # end
+
+    def update_position(self):
+        self.position += self.velocity
     # end
 
     def update_velocity(self, w, c1, c2, global_best):
@@ -28,11 +44,7 @@ class Particle(object):
         self.velocity = inertial_term + cognitive_term + social_term
     # end
 
-    def update_position(self):
-        self.position += self.velocity
-    # end
-
-    def evaluate(self, cost_function):
+    def evaluate_local_best(self, cost_function):
         value = cost_function(self.position)
         if value < cost_function(self.local_best):
             self.local_best = self.position.copy()

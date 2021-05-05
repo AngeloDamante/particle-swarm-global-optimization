@@ -1,32 +1,7 @@
 import numpy as np
 from cost_function import sphere, ackley
 from swarm import Swarm
-from coordinate_descent import *
-
-
-def standard_pso(num_iterations, num_particles, bounds, fitness_func):
-    my_swarm = Swarm(num_particles, bounds)  # initial population
-    my_swarm.compute_global_best(fitness_func)  # set global best for swarm
-    for k in range(0, num_iterations):
-
-        # coefficients policy
-        inertial, cognitive, social = compute_coefficients(k, num_iterations)
-
-        # move swarm
-        my_swarm.move(inertial, cognitive, social)
-
-        # evaluate local_best for swarm
-        my_swarm.compute_local_best(fitness_func)
-
-        # evaluate global_best for swarm
-        my_swarm.compute_global_best(fitness_func)
-
-        print(f"{k}:  {fitness_func(my_swarm.global_best)}")
-
-    # end
-
-    print(f"final solution is: {my_swarm.global_best}")
-# end
+from local_search_methods import coordinate_descent
 
 
 def compute_coefficients(iter, num_iter):
@@ -39,10 +14,9 @@ def compute_coefficients(iter, num_iter):
 # end
 
 
-def memetic_pso(num_iterations, num_particles, bounds, fitness_func):
+def standard_pso(num_iterations, num_particles, bounds, fitness_func):
     my_swarm = Swarm(num_particles, bounds)  # initial population
-    my_swarm.found_local_best(coordinate_descent, fitness_func, initial_step=5)
-    my_swarm.compute_global_best(fitness_func)  # set global best for swarm
+    my_swarm.find_global_best(fitness_func)  # set global best for swarm
     for k in range(0, num_iterations):
 
         # coefficients policy
@@ -52,11 +26,37 @@ def memetic_pso(num_iterations, num_particles, bounds, fitness_func):
         my_swarm.move(inertial, cognitive, social)
 
         # evaluate local_best for swarm
-        my_swarm.found_local_best(
+        my_swarm.compute_local_best(fitness_func)
+
+        # evaluate global_best for swarm
+        my_swarm.find_global_best(fitness_func)
+
+        print(f"{k}:  {fitness_func(my_swarm.global_best)}")
+
+    # end
+
+    print(f"final solution is: {my_swarm.global_best}")
+# end
+
+
+def memetic_pso(num_iterations, num_particles, bounds, fitness_func, local_search_method):
+    my_swarm = Swarm(num_particles, bounds)  # initial population
+    my_swarm.find_local_best(coordinate_descent, fitness_func, initial_step=5)
+    my_swarm.find_global_best(fitness_func)  # set global best for swarm
+    for k in range(0, num_iterations):
+
+        # coefficients policy
+        inertial, cognitive, social = compute_coefficients(k, num_iterations)
+
+        # move swarm
+        my_swarm.move(inertial, cognitive, social)
+
+        # evaluate local_best for swarm
+        my_swarm.find_local_best(
             coordinate_descent, fitness_func, initial_step=5)
 
         # evaluate global_best for swarm
-        my_swarm.compute_global_best(fitness_func)
+        my_swarm.find_global_best(fitness_func)
 
         print(f"{k}:  {fitness_func(my_swarm.global_best)}")
 
@@ -73,9 +73,7 @@ if __name__ == '__main__':
     bounds = np.array([[-5, +5], [-5, +5]])
     fitness_func = ackley
 
-    local_search_method = coordinate_descent
-
     # standard_pso(num_iterations, num_particles, bounds, fitness_func)
-    # memetic_pso(num_iterations, num_particles, bounds, fitness_func)
+    # memetic_pso(num_iterations, num_particles, bounds, fitness_func, coordinate_descent)
 
 # end
