@@ -17,7 +17,8 @@ The goal of this project is developer standard and memetic PSO in python and not
 ├── README.md
 ├── setup.py
 └── src         # utility (.png and test function)
-    ├── ackley.png
+    ├── main.py
+    ├── PSO.ipynb  # complete report and code
     ├── ...
 ```
 
