@@ -73,7 +73,7 @@ RUN apt install -y python3-pip && pip3 install numpy
 RUN pip3 install jupyter && pip3 install matplotlib
 RUN pip3 install imageio
 ```
-and docker-compose,
+with docker-compose,
 ```
 version: '3.7'
 
