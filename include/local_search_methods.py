@@ -3,6 +3,17 @@ from random import random
 
 
 def coordinate_descent(x, function, initial_step=1):
+    """Implements derivative free method, coordinate descent.
+
+    The stopping rule has been implemented, observing the proximity
+    of the step with zero.
+
+    Args:
+        x(ndarray): initial point to minimize with shape (dim, 1)
+        function(function): function to minimize
+        initial_step(double): initial step for local search method
+
+    """
 
     dim = len(x)
     directions = np.hsplit(np.eye(dim), dim) + np.hsplit(-np.eye(dim), dim)

@@ -1,7 +1,11 @@
-import numpy as np
-from cost_function import sphere, ackley
-from swarm import Swarm
 from local_search_methods import coordinate_descent
+from swarm import Swarm
+from cost_function import sphere, ackley
+import numpy as np
+
+__author__ = 'Angelo D.Amante'
+__mail__ = 'angelo.damante16@gmail.com'
+__git__ = 'https://github.com/AngeloDamante/particle-swarm-global-optimization'
 
 
 def compute_coefficients(iter, num_iter):
@@ -67,6 +71,7 @@ def memetic_pso(num_iterations, num_particles, bounds, fitness_func, local_searc
 
 
 if __name__ == '__main__':
+    """A simple test function before implement notebook jupyter."""
 
     num_iterations = 50
     num_particles = 30

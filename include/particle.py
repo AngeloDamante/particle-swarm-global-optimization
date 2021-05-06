@@ -6,9 +6,9 @@ class Particle(object):
     """Implements Particle object with its property and activities.
 
     Attributes:
-        position(ndarray): x-vector of particle (2x1)
-        velocity(ndarray): v-vector of particle (2x1)
-        local_best(ndarray): p-vector of particle (2x1)
+        position(ndarray): x-vector of particle (dimx1)
+        velocity(ndarray): v-vector of particle (dimx1)
+        local_best(ndarray): p-vector of particle (dimx1)
 
     """
 
@@ -34,7 +34,7 @@ class Particle(object):
         """A simply get method.
 
         Returns:
-            position(ndarray): with shape (2, 1)
+            position(ndarray): with shape (dim, 1)
 
         """
         position = self.position.copy()
@@ -45,7 +45,7 @@ class Particle(object):
         """A simply get method.
 
         Returns:
-            velocity(ndarray): with shape (2, 1)
+            velocity(ndarray): with shape (dim, 1)
         """
         velocity = self.velocity.copy()
         return velocity
@@ -55,7 +55,7 @@ class Particle(object):
         """A simply get method.
 
         Returns:
-            local_best(ndarray): with shape (2, 1)
+            local_best(ndarray): with shape (dim, 1)
 
         """
         p = self.local_best.copy()

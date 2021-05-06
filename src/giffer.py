@@ -3,6 +3,13 @@ import imageio
 
 
 def giffer(num_iteration, name):
+    """A simply function to make a gif file from num_iteration images.
+
+    Args:
+        num_iteration(int): number of images
+        name(str): name of gif file in output
+
+    """
     filenames = []
     for i in range(0, num_iteration):
         filenames.append(str(i) + '.png')

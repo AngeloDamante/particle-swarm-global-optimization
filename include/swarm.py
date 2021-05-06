@@ -10,7 +10,7 @@ class Swarm(object):
         num_particles(int): number of particles for the swarm
         dim(int): n-dimensions
         particles(list): instantiated particles
-        global_best(ndarray): best position for the swarm (2x1)
+        global_best(ndarray): best position for the swarm (dimx1)
 
     """
 
@@ -40,7 +40,7 @@ class Swarm(object):
         """A simply get method.
 
         Returns:
-            global_best(ndarray): with shape (2, 1)
+            global_best(ndarray): with shape (dim, 1)
 
         """
 
