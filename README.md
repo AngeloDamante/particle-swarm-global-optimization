@@ -61,7 +61,7 @@ Tests were executed on the [Ackley Function](https://en.wikipedia.org/wiki/Ackle
 <p align=center>
   <img src="src/pso.gif" width=450> <img src="src/memetic_pso.gif" width=450>
 </p>
-standard PSO in left and memetic PSO in right.
+standard-PSO and memetic-PSO respectively.
 
 ## Developing
 To develop this project, I used docker service, 
