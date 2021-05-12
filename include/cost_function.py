@@ -17,6 +17,16 @@ def ackley(x, delta=0):
 # end
 
 
+def schwefel(x, delta=0):
+    ''' returns schwefel 2D '''
+    d = 2
+    v = 0.
+    for i in range(d):
+        v += x[i]* np.sin(np.sqrt(np.abs(x[i])))
+    return (418.9829*d - v)
+# end
+
+
 def sphere_grid(x, delta=0):
     '''return a ndarray'''
     return np.sum(np.power(x+delta, 2), axis=1)

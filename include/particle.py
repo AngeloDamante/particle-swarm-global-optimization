@@ -9,6 +9,7 @@ class Particle(object):
         position(ndarray): x-vector of particle (dimx1)
         velocity(ndarray): v-vector of particle (dimx1)
         local_best(ndarray): p-vector of particle (dimx1)
+        bounds(ndarray): bounds per axis (nx2), with n-dimensions
 
     """
 
@@ -28,6 +29,8 @@ class Particle(object):
         self.position = np.random.uniform(lower, upper).reshape(n_dim, 1)
         self.velocity = np.random.uniform(size=(n_dim, 1))
         self.local_best = self.position.copy()
+
+        self.bounds = bounds
     # end
 
     def get_position(self):
@@ -64,7 +67,10 @@ class Particle(object):
 
     def update_position(self):
         """In according with PSO theory, this method updates position."""
-        self.position += self.velocity
+        position = self.position + self.velocity
+        lower = self.bounds[:, 0].reshape((2, 1))
+        upper = self.bounds[:, 1].reshape((2, 1))
+        self.position = np.clip(position, lower, upper)
     # end
 
     def update_velocity(self, w, c1, c2, global_best):

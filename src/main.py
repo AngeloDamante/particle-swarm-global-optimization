@@ -1,6 +1,6 @@
 from local_search_methods import coordinate_descent
 from swarm import Swarm
-from cost_function import sphere, ackley
+from cost_function import sphere, ackley, schwefel
 import numpy as np
 
 __author__ = 'Angelo D.Amante'
@@ -75,9 +75,14 @@ if __name__ == '__main__':
 
     num_iterations = 50
     num_particles = 30
-    bounds = np.array([[-5, +5], [-5, +5]])
-    fitness_func = ackley
 
+    # test for ackley
+    # bounds = np.array([[-5, +5], [-5, +5]])
+    # fitness_func = ackley
+
+    # test for schwefel
+    # bounds = np.array([[-500, +500], [-500, +500]])
+    # fitness_func = schwefel
     # standard_pso(num_iterations, num_particles, bounds, fitness_func)
     # memetic_pso(num_iterations, num_particles, bounds, fitness_func, coordinate_descent)
 
