@@ -83,6 +83,8 @@ if __name__ == '__main__':
     # test for schwefel
     # bounds = np.array([[-500, +500], [-500, +500]])
     # fitness_func = schwefel
+
+    # Two function implemented
     # standard_pso(num_iterations, num_particles, bounds, fitness_func)
     # memetic_pso(num_iterations, num_particles, bounds, fitness_func, coordinate_descent)
 
