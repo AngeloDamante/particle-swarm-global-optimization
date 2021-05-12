@@ -21,7 +21,11 @@ The goal of this project is developer standard and memetic PSO in python and not
     ├── PSO.ipynb  # complete report and code
     ├── ...
 ```
-To use this project, just clone the repo and the _include_ folder provides the necessary modules to the _PSO.ipynb_ with report and complete code.
+To use this project, just clone the repo and the _include_ folder provides the necessary modules to the _PSO.ipynb_ with report and complete code. If you want to run _PSO.ipynb_ in local mode, you must set a preliminar cell with
+```python
+import sys
+sys.path.append('your_cloned_directory/include')
+```
 
 ## PSO Theory
 For each iteration the swarm moves according to the following two equations,
