@@ -22,7 +22,7 @@ def schwefel(x, delta=0):
     d = 2
     v = 0.
     for i in range(d):
-        v += x[i]* np.sin(np.sqrt(np.abs(x[i])))
+        v += x[i] * np.sin(np.sqrt(np.abs(x[i])))
     return (418.9829*d - v)
 # end
 

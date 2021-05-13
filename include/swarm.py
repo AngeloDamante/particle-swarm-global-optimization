@@ -154,7 +154,7 @@ class Swarm(object):
         # end
     # end
 
-    def find_local_best(self, local_search_method, cost_function, initial_step=1):
+    def find_local_best(self, local_search_method, cost_function, bounds, initial_step=1):
         """To implement memetic variant to standard PSO.
 
         This method, equips PSO with a local_search_method to improve
@@ -169,7 +169,7 @@ class Swarm(object):
         for i in range(0, self.num_particles):
             x = self.particles[i].position
             self.particles[i].local_best = local_search_method(
-                x, cost_function, initial_step)
+                x, cost_function, bounds, initial_step)
         # end
     # end
 

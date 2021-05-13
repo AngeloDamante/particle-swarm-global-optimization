@@ -45,7 +45,7 @@ def standard_pso(num_iterations, num_particles, bounds, fitness_func):
 
 def memetic_pso(num_iterations, num_particles, bounds, fitness_func, local_search_method):
     my_swarm = Swarm(num_particles, bounds)  # initial population
-    my_swarm.find_local_best(coordinate_descent, fitness_func, initial_step=5)
+    my_swarm.find_local_best(coordinate_descent, fitness_func, bounds, initial_step=5)
     my_swarm.find_global_best(fitness_func)  # set global best for swarm
     for k in range(0, num_iterations):
 
@@ -57,7 +57,7 @@ def memetic_pso(num_iterations, num_particles, bounds, fitness_func, local_searc
 
         # evaluate local_best for swarm
         my_swarm.find_local_best(
-            coordinate_descent, fitness_func, initial_step=5)
+            coordinate_descent, fitness_func, bounds, initial_step=5)
 
         # evaluate global_best for swarm
         my_swarm.find_global_best(fitness_func)
@@ -81,11 +81,11 @@ if __name__ == '__main__':
     # fitness_func = ackley
 
     # test for schwefel
-    # bounds = np.array([[-500, +500], [-500, +500]])
-    # fitness_func = schwefel
+    bounds = np.array([[-500, +500], [-500, +500]])
+    fitness_func = schwefel
 
     # Two function implemented
     # standard_pso(num_iterations, num_particles, bounds, fitness_func)
-    # memetic_pso(num_iterations, num_particles, bounds, fitness_func, coordinate_descent)
+    memetic_pso(num_iterations, num_particles, bounds, fitness_func, coordinate_descent)
 
 # end
