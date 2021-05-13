@@ -18,12 +18,10 @@ def ackley(x, delta=0):
 
 
 def schwefel(x, delta=0):
-    ''' returns schwefel 2D '''
-    d = 2
-    v = 0.
-    for i in range(d):
-        v += x[i] * np.sin(np.sqrt(np.abs(x[i])))
-    return (418.9829*d - v)
+    ''' returns a single value of schwefel function'''
+    d = len(x)
+    v = 418.9829*d - np.sum(x*np.sin(np.sqrt(np.abs(x))))
+    return v
 # end
 
 
