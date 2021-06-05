@@ -53,7 +53,7 @@ This method generates a better initial population and evaluates particle positio
 For this study purposal, the [coordinate-descent](https://en.wikipedia.org/wiki/Coordinate_descent) algorithm has been chosen. It is implemented in <i>local_search_method</i> extensible module. The pseudo code is follow,
 
 <p align=center>
-  <img src="src/coordinate_descent.png" width=300>
+  <img src="src/coordinate_descent_ps.png" width=300>
 </p>
 
 ## Implementation
@@ -69,7 +69,7 @@ Tests were executed on the [Ackley Function](https://en.wikipedia.org/wiki/Ackle
 standard-PSO and memetic-PSO respectively.
 
 ## Developing
-To develop this project, I used docker service, 
+To develop this project, I used docker service,
 ```
 FROM nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04 as base
 ENV PYTHONPATH "${PYTHONPATH}:/src:/include:/plots"
@@ -93,7 +93,7 @@ services:
       - ./src:/src
       - ./plots:/plots
       - ./include:/include
-      
+
   notebookGo:
     container_name: 'notebookGo'
     build:
