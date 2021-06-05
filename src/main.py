@@ -24,7 +24,8 @@ def standard_pso(num_iterations, num_particles, bounds, fitness_func):
     for k in range(0, num_iterations):
 
         # coefficients policy
-        inertial, cognitive, social = compute_coefficients(k, num_iterations)
+        # inertial, cognitive, social = compute_coefficients(k, num_iterations)
+        inertial, cognitive, social = 0.729, 2.05, 2.05
 
         # move swarm
         my_swarm.move(inertial, cognitive, social)
@@ -50,7 +51,8 @@ def memetic_pso(num_iterations, num_particles, bounds, fitness_func, local_searc
     for k in range(0, num_iterations):
 
         # coefficients policy
-        inertial, cognitive, social = compute_coefficients(k, num_iterations)
+        # inertial, cognitive, social = compute_coefficients(k, num_iterations)
+        inertial, cognitive, social = 0.729, 2.05, 2.05
 
         # move swarm
         my_swarm.move(inertial, cognitive, social)
@@ -77,11 +79,11 @@ if __name__ == '__main__':
     num_particles = 30
 
     # test for ackley
-    # bounds = np.array([[-5, +5], [-5, +5]])
+    # bounds = np.array([[-5, +5], [-5, +5], [-5, +5]])
     # fitness_func = ackley
 
     # test for schwefel
-    bounds = np.array([[-500, +500], [-500, +500]])
+    bounds = np.array([[-500, +500], [-500, +500], [-500, 500]])
     fitness_func = schwefel
 
     # Two function implemented

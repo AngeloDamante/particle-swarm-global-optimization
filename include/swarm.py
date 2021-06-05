@@ -55,6 +55,7 @@ class Swarm(object):
             cost_function(function): fitness function to evaluate positions
 
         """
+        # g = cost_function(self.particles[0].local_best)
         g = cost_function(self.global_best)
         for i in range(0, self.num_particles):
             if g > cost_function(self.particles[i].local_best):

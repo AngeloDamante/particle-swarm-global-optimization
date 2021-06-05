@@ -23,10 +23,10 @@ class Particle(object):
         super(Particle, self).__init__()
 
         n_dim = len(bounds)
-        lower = bounds[:, 0]
-        upper = bounds[:, 1]
+        lower = bounds[:, 0].reshape((n_dim, 1))
+        upper = bounds[:, 1].reshape((n_dim, 1))
 
-        self.position = np.random.uniform(lower, upper).reshape(n_dim, 1)
+        self.position = np.random.uniform(lower, upper).reshape((n_dim, 1))
         self.velocity = np.random.uniform(size=(n_dim, 1))
         self.local_best = self.position.copy()
 
@@ -68,8 +68,9 @@ class Particle(object):
     def update_position(self):
         """In according with PSO theory, this method updates position."""
         position = self.position + self.velocity
-        lower = self.bounds[:, 0].reshape((2, 1))
-        upper = self.bounds[:, 1].reshape((2, 1))
+        dim = len(self.bounds)
+        lower = self.bounds[:, 0].reshape((dim, 1))
+        upper = self.bounds[:, 1].reshape((dim, 1))
         self.position = np.clip(position, lower, upper)
     # end
 

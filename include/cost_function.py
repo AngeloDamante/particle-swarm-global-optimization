@@ -20,7 +20,7 @@ def ackley(x, delta=0):
 def schwefel(x, delta=0):
     ''' returns a single value of schwefel function'''
     d = len(x)
-    v = 418.9829*d - np.sum(x*np.sin(np.sqrt(np.abs(x))))
+    v = 418.9829*d - np.sum(x * np.sin(np.sqrt(np.abs(x))))
     return v
 # end
 
